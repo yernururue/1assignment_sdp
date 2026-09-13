@@ -1,5 +1,9 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("hello world");
+        Pizza pizza = new Pizza.Builder(25, "Pepperoni")
+                .cheese(true)
+                .sausage(true)
+                .tomato(false)
+                .build();
     }
 }
