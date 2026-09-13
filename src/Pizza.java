@@ -1,4 +1,7 @@
 public final class Pizza {
+
+    private final int maxSize = 45;
+    private final int minSize = 15;
     private final int size;
     private final String name;
     private final boolean extraCheese;
@@ -6,7 +9,7 @@ public final class Pizza {
     private final boolean tomato;
 
     Pizza(int size, String name, boolean extraCheese, boolean sausage, boolean tomato) {
-        if (size < 15 || size > 45) {
+        if (size < minSize || maxSize > 45) {
             throw new IllegalArgumentException("The size must be between 15 and 45 cm");
         }
 
