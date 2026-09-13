@@ -1,16 +1,24 @@
-public class Pizza {
+public final class Pizza {
     private final int size;
     private final String name;
-    private final boolean cheese;
+    private final boolean extraCheese;
     private final boolean sausage;
     private final boolean tomato;
 
-    private Pizza(Builder builder) {
-        this.size = builder.size;
-        this.name = builder.name;
-        this.cheese = builder.cheese;
-        this.sausage = builder.sausage;
-        this.tomato = builder.tomato;
+    Pizza(int size, String name, boolean extraCheese, boolean sausage, boolean tomato) {
+        if (size < 15 || size > 45) {
+            throw new IllegalArgumentException("The size must be between 15 and 45 cm");
+        }
+
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("The name cannot be empty");
+        }
+
+        this.size = size;
+        this.name = name;
+        this.extraCheese = extraCheese;
+        this.sausage = sausage;
+        this.tomato = tomato;
     }
 
     public int getSize() {
@@ -21,60 +29,25 @@ public class Pizza {
         return name;
     }
 
-    public boolean getCheese() {
-        return cheese;
+    public boolean hasExtraCheese() {
+        return extraCheese;
     }
 
-    public boolean getSausage() {
+    public boolean hasSausage() {
         return sausage;
     }
 
-    public boolean getTomato() {
+    public boolean hasTomato() {
         return tomato;
     }
 
     @Override
     public String toString() {
-        return "Pizza's size: " + size + ", name: " + name + " cheese = " + cheese + " sausage = " + sausage + " tomato = " + tomato;
-    }
-
-    public static class Builder {
-        private final int size;
-        private final String name;
-        private boolean cheese;
-        private boolean sausage;
-        private boolean tomato;
-
-
-        public Builder(int size, String name) {
-            if (size<15 || size>45) {
-                throw new IllegalArgumentException("The size must be between 15-45 cm");
-            }
-
-            if (name ==null || name.isBlank()) {
-                throw new IllegalArgumentException("The name cannot be empty");
-            }
-            this.size = size;
-            this.name = name;
-        }
-
-        public Builder cheese(boolean cheese) {
-            this.cheese = cheese;
-            return this;
-        }
-
-        public Builder sausage(boolean sausage) {
-            this.sausage = sausage;
-            return this;
-        }
-
-        public Builder tomato(boolean tomato) {
-            this.tomato = tomato;
-            return this;
-        }
-
-        public Pizza build() {
-            return new Pizza(this);
-        }
+        return "Pizza " +
+                "size=" + size + " cm" +
+                " name='" + name +
+                " extraCheese=" + extraCheese +
+                " sausage=" + sausage +
+                " tomato=" + tomato;
     }
 }
