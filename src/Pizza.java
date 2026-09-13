@@ -12,6 +12,32 @@ public class Pizza {
         this.sausage = builder.sausage;
         this.tomato = builder.tomato;
     }
+
+    public int getSize() {
+        return size;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean getCheese() {
+        return cheese;
+    }
+
+    public boolean getSausage() {
+        return sausage;
+    }
+
+    public boolean getTomato() {
+        return tomato;
+    }
+
+    @Override
+    public String toString() {
+        return "Pizza's size: " + size + ", name: " + name + " cheese = " + cheese + " sausage = " + sausage + " tomato = " + tomato;
+    }
+
     public static class Builder {
         private final int size;
         private final String name;
@@ -21,6 +47,13 @@ public class Pizza {
 
 
         public Builder(int size, String name) {
+            if (size<15 || size>45) {
+                throw new IllegalArgumentException("The size must be between 15-45 cm");
+            }
+
+            if (name ==null || name.isBlank()) {
+                throw new IllegalArgumentException("The name cannot be empty");
+            }
             this.size = size;
             this.name = name;
         }

@@ -5,5 +5,7 @@ public class Main {
                 .sausage(true)
                 .tomato(false)
                 .build();
+
+        System.out.println(pizza.toString());
     }
 }
